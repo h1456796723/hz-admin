@@ -1,0 +1,11 @@
+// 主题色
+$primary_color: #2b92f7;
+
+// 覆盖 element-ui 默认样式
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
+    "primary": (
+      "base": $primary_color,
+    ),
+  )
+);

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
+import { isExprice } from './utils'
 const router = useRouter()
 
 const request = axios.create({
@@ -10,6 +11,13 @@ const request = axios.create({
 
 request.interceptors.request.use(config => {
   if (window.localStorage.getItem('token')) {
+    if (isExprice()) {
+      // 跳转到登录页面
+      window.localStorage.clear()
+      router.push('/login')
+      ElMessage({ message: '登录过期，请重新登录', type: 'error' })
+      return Promise.reject(new Error('登录过期，请重新登录'))
+    }
     config.headers.Authorization = window.localStorage.getItem('token')
   }
   return config
@@ -24,6 +32,7 @@ request.interceptors.response.use(response => {
       // 登录失效
       if (window.localStorage.getItem('token')) {
         window.localStorage.removeItem('token')
+        window.localStorage.removeItem('expire')
       }
       ElMessage({ message: '登录失效', type: 'error' })
       router.replace('/login')

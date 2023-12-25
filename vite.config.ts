@@ -29,7 +29,6 @@ export default defineConfig({
           name: 'element-plus',
           var: 'ElementPlus',
           path: 'dist/index.full.js',
-          css: 'dist/index.css'
         },
         {
           name: 'vue-router',

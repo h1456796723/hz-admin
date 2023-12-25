@@ -15,7 +15,7 @@
             <el-input v-model="loginForm.username" />
           </el-form-item>
           <el-form-item label="密码：" prop="password">
-            <el-input v-model="loginForm.password" />
+            <el-input v-model="loginForm.password" type="password" />
           </el-form-item>
           <el-form-item >
             <el-button type="primary" @click="login">登录</el-button>
@@ -31,8 +31,11 @@
 <script setup lang='ts'>
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { v4 as uuidv4 } from 'uuid'
+import { useRouter } from 'vue-router'
 import setting from '@/setting'
 
+const router = useRouter()
 const formRef = ref<FormInstance>()
 
 const rules:FormRules  = {
@@ -49,6 +52,11 @@ const login = () => {
   formRef.value?.validate((valid) => {
     if (valid) {
       console.log('submit!')
+      const token = uuidv4()
+      const now = new Date()
+      window.localStorage.setItem('token', token)
+      window.localStorage.setItem('expire', now.getTime().toString())
+      router.replace('/')
     }
   })
 }

@@ -19,39 +19,39 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-    importCDN({
-      prodUrl: 'https://cdn.bootcdn.net/ajax/libs/{name}@{version}/{path}',
-      modules: [
-        autoComplete('vue'),
-        autoComplete('axios'),
-        autoComplete('lodash'),
-        {
-          name: 'element-plus',
-          var: 'ElementPlus',
-          path: 'dist/index.full.js',
-        },
-        {
-          name: 'vue-router',
-          var: 'VueRouter',
-          path: 'dist/vue-router.global.js'
-        },
-        {
-          name: 'pinia',
-          var: 'Pinia',
-          path: 'dist/pinia.iife.js'
-        },
-        {
-          name: 'echarts',
-          var: 'echarts',
-          path: 'dist/echarts.min.js'
-        },
-        {
-          name: 'zrender',
-          var: 'zrender',
-          path: 'dist/zrender.js'
-        }
-      ]
-    })
+    // importCDN({
+    //   prodUrl: 'https://cdn.bootcdn.net/ajax/libs/{name}@{version}/{path}',
+    //   modules: [
+    //     autoComplete('vue'),
+    //     autoComplete('axios'),
+    //     autoComplete('lodash'),
+    //     {
+    //       name: 'element-plus',
+    //       var: 'ElementPlus',
+    //       path: 'dist/index.full.js',
+    //     },
+    //     {
+    //       name: 'vue-router',
+    //       var: 'VueRouter',
+    //       path: 'dist/vue-router.global.js'
+    //     },
+    //     {
+    //       name: 'pinia',
+    //       var: 'Pinia',
+    //       path: 'dist/pinia.iife.js'
+    //     },
+    //     {
+    //       name: 'echarts',
+    //       var: 'echarts',
+    //       path: 'dist/echarts.min.js'
+    //     },
+    //     {
+    //       name: 'zrender',
+    //       var: 'zrender',
+    //       path: 'dist/zrender.js'
+    //     }
+    //   ]
+    // })
   ],
   resolve: {
     alias: {
@@ -89,5 +89,5 @@ export default defineConfig({
         drop_debugger: true,  // 删除debugger
       }
     }
-  }
+  },
 })

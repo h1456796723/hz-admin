@@ -5,19 +5,26 @@ import { isExprice } from './utils'
 const router = useRouter()
 
 const request = axios.create({
-  baseURL: import.meta.env.BASE_URL,
+  baseURL: import.meta.env.VITE_BASEURL,
   timeout: 5000
 })
 
+export type Response = {
+  code: number,
+  success: boolean,
+  data: any,
+  message: string
+}
+
 request.interceptors.request.use(config => {
   if (window.localStorage.getItem('token')) {
-    if (isExprice()) {
-      // 跳转到登录页面
-      window.localStorage.clear()
-      router.push('/login')
-      ElMessage({ message: '登录过期，请重新登录', type: 'error' })
-      return Promise.reject(new Error('登录过期，请重新登录'))
-    }
+    // if (isExprice()) {
+    //   // 跳转到登录页面
+    //   window.localStorage.clear()
+    //   router.push('/login')
+    //   ElMessage({ message: '登录过期，请重新登录', type: 'error' })
+    //   return Promise.reject(new Error('登录过期，请重新登录'))
+    // }
     config.headers.Authorization = window.localStorage.getItem('token')
   }
   return config

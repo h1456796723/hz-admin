@@ -2,11 +2,7 @@
 
 <div class="common-layout">
     <el-container>
-      <el-aside width="200px">
-        <aside class="aside">
-          <Aside />
-        </aside>
-      </el-aside>
+      <Aside />
       <el-container>
         <el-header>Header</el-header>
         <el-main>Main</el-main>
@@ -28,9 +24,5 @@ import Aside from './components/Aside.vue'
     width: 100%;
     height: 100%;
   }
-}
-.aside{
-  width: 100%;
-  height: 100%;
 }
 </style>

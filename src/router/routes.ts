@@ -5,7 +5,15 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'layout',
     component: () => import('@/layout/index.vue'),
-    children: []
+    redirect: '/home',
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/pages/home/index.vue'),
+        meta: { title: '首页', icon: 'House' }
+      }
+    ]
   },
   {
     path: '/login',

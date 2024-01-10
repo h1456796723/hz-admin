@@ -31,14 +31,9 @@
 <script setup lang='ts'>
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
-import { loginApi, getRoutesApi } from '@/api'
-import { useRouter } from 'vue-router'
+import { loginApi } from '@/api'
 import { ElMessage } from 'element-plus'
 import setting from '@/setting'
-import { useRouteStore } from '@/store/routes'
-
-const router = useRouter()
-const routeStore = useRouteStore()
 const formRef = ref<FormInstance>()
 
 const rules:FormRules  = {
@@ -57,10 +52,11 @@ const login = () => {
       loginApi(loginForm).then((res: any) => {
         if (res.code === 200) {
           localStorage.setItem('token', res.data.token)
-          getRoutesApi().then((result: any) => {
-            routeStore.addRoute(result.data)
-            router.replace({name:'menu'})
-          })
+          // getRoutesApi().then((result: any) => {
+          //   routeStore.addRoute(result.data)
+          //   window.sessionStorage.setItem('routes', JSON.stringify(result.data))
+          //   router.replace({name:'layout'})
+          // })
         } else {
           ElMessage({ message: '账号或密码错误', type: 'error' })
         }

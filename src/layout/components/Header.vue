@@ -32,7 +32,8 @@
     <div class="bottom">
       <el-tag 
         v-for="item in editableTabs" 
-        :key="item.path" closable
+        :key="item.path" 
+        :closable="item.path !== '/home'"
         color="#fff"
         :style="{color: item.path === route.path ? '#409EFF' : '#606266'}"
         @click="changeTab(item)"
@@ -71,9 +72,18 @@ const changeTab = (item: Partial<RouteRecordRaw>) => {
 
 const closeTab = (item: Partial<RouteRecordRaw>) => {
   if (item.path === route.path) {
-    router.back()
+    // router.back()
+    const index = editableTabs.value.findIndex(i => i.path === route.path)
+    editableTabs.value = editableTabs.value.filter(i => i.path !== item.path)
+    if (editableTabs.value.length > 0) {
+      router.replace(editableTabs.value[index - 1].path as string)
+    } else {
+      router.replace({name: 'home'})
+    }
+  } else {
+    editableTabs.value = editableTabs.value.filter(i => i.path !== item.path)
   }
-  editableTabs.value = editableTabs.value.filter(i => i.path !== item.path)
+  
 }
 
 onMounted(() => {

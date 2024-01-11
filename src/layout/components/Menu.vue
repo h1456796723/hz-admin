@@ -1,6 +1,9 @@
 <template>
 
-  <el-menu background-color="#001529" :collapse="isCollapse">
+  <el-menu background-color="#001529" :collapse="isCollapse" 
+  router text-color="rgba(254,254,254,0.55)" active-text-color="#fff"
+  :default-active="$route.path"
+  >
     <template v-for="item in routeList" :key="item.name">
       <MenuItem :data="item" />
     </template>
@@ -22,5 +25,6 @@ routeList.value = routes.find(item => item.name === 'layout')!.children as any
 <style lang="scss" scoped>
 .el-menu{
   border: none;
+  --text-color: rgba(254,254,254,0.65);
 }
 </style>

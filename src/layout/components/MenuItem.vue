@@ -1,10 +1,10 @@
 <template>
-  <el-sub-menu v-if="data.children && data.children.length">
+  <el-sub-menu v-if="data.children && data.children.length" :index="data.path">
     <template #title>
       <el-icon style="color: #fff">
         <component :is="data?.meta?.icon"></component>
       </el-icon>
-      <span style="color: #fff">{{ data?.meta?.title }}</span>
+      <span >{{ data?.meta?.title }}</span>
     </template>
     <template v-for="item in data.children" :key="item.path">
       <MenuItem :data="item" />
@@ -14,7 +14,7 @@
     <el-icon style="color: #fff">
       <component :is="data?.meta?.icon"></component>
     </el-icon>
-    <span style="color: #fff">{{ data?.meta?.title }}</span>
+    <span class="">{{ data?.meta?.title }}</span>
   </el-menu-item>
 </template>
 

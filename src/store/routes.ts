@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { RouteRecordRaw, useRouter, useRoute } from 'vue-router'
+import { ref } from 'vue'
 import { MyRoutesRecordRaw } from '@/types'
 
 export const useRouteStore = defineStore('route', () => {
@@ -7,6 +8,7 @@ export const useRouteStore = defineStore('route', () => {
   const route = useRoute()
   const modules = import.meta.glob('@/pages/**/*.vue')
   const routesSession = window.sessionStorage.getItem('routes') || []
+  let currentRoute = ref({})
 
   const loadPage = (componentPath: string) => {
     return () => modules[componentPath]

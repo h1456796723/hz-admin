@@ -30,12 +30,13 @@
 
 <script setup lang='ts'>
 import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import type { FormInstance, FormRules } from 'element-plus'
 import { loginApi } from '@/api'
 import { ElMessage } from 'element-plus'
 import setting from '@/setting'
 const formRef = ref<FormInstance>()
-
+const router = useRouter()
 const rules:FormRules  = {
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
@@ -57,6 +58,7 @@ const login = () => {
           //   window.sessionStorage.setItem('routes', JSON.stringify(result.data))
           //   router.replace({name:'layout'})
           // })
+          router.replace({name:'layout'})
         } else {
           ElMessage({ message: '账号或密码错误', type: 'error' })
         }

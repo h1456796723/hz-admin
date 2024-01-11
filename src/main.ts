@@ -8,6 +8,7 @@ import { createPinia } from 'pinia'
 import 'reset.css'
 import 'element-plus/dist/index.css'
 import '@/assets/style/base.scss'
+import '@/assets/style/element.scss'
 
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

@@ -53,5 +53,7 @@ import Header from './components/Header.vue'
   height: 100%;
   background-color: rgb(240, 242, 245);
   overflow: scroll;
+  box-sizing: border-box;
+  padding: 20px;
 }
 </style>

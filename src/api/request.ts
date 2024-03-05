@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { isExprice } from './utils'
+import nProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 const router = useRouter()
 
 const request = axios.create({
@@ -17,14 +18,8 @@ export type Response = {
 }
 
 request.interceptors.request.use(config => {
+  nProgress.start()
   if (window.localStorage.getItem('token')) {
-    // if (isExprice()) {
-    //   // 跳转到登录页面
-    //   window.localStorage.clear()
-    //   router.push('/login')
-    //   ElMessage({ message: '登录过期，请重新登录', type: 'error' })
-    //   return Promise.reject(new Error('登录过期，请重新登录'))
-    // }
     config.headers.Authorization = window.localStorage.getItem('token')
   }
   return config
@@ -34,6 +29,7 @@ request.interceptors.request.use(config => {
 })
 
 request.interceptors.response.use(response => {
+  nProgress.done()
   switch (response.data.code) {
     case 401:
       // 登录失效

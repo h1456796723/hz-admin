@@ -7,11 +7,13 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { autoComplete, Plugin as importCDN } from 'vite-plugin-cdn-import'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    vueJsx(),
     visualizer({ open: true }), // 生成依赖分析图
     AutoImport({
       resolvers: [ElementPlusResolver()],
